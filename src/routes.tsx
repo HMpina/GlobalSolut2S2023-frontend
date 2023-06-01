@@ -6,7 +6,7 @@ import Hints from './pages/Hints';
 import HintsForm from './pages/Hints/Form';
 import HintsDetail from './pages/Hints/Detail';
  
-const Routes: React.FC = () => {
+const Apps: React.FC = () => {
     return(
         <Switch>
             <Route path="/" exact component={Home} />
@@ -17,4 +17,4 @@ const Routes: React.FC = () => {
         </Switch>
     );
 }
-export default Routes;
+export default Apps;
