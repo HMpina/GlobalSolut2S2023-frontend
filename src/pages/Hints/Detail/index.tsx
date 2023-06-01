@@ -18,7 +18,7 @@ const Detail: React.FC = () => {
     const { id } = useParams<{ id: string }>()
     const [hint, setHint] = useState<IHint>()
     function back(){
-        history.goBack;
+        history.goBack()
     }
     async function findHint(){
         const response = await api.get<IHint>("/hints/${id}")
