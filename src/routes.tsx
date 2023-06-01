@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Hints from './pages/Hints';
@@ -8,14 +8,15 @@ import HintsDetail from './pages/Hints/Detail';
 
 const Apps: React.FC = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/dicas" element={<Hints />} />
-      <Route path="/dicas_cadastro" element={<HintsForm />} />
-      <Route path="/dicas_cadastro/:id" element={<HintsForm />} />
-      <Route path="/dicas/:id" element={<HintsDetail />} />
-    </Routes>
+    <BrowserRouter>
+      <Route path="/" component={Home} />
+      <Route path="/dicas" component={Hints} />
+      <Route path="/dicas_cadastro" component={HintsForm} />
+      <Route path="/dicas_cadastro/:id" component={HintsForm} />
+      <Route path="/dicas/:id" component={HintsDetail} />
+    </BrowserRouter>
   );
 };
+
 
 export default Apps;

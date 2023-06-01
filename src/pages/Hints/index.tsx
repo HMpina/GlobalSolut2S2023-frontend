@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import api from '../../services/api';
 import moment from 'moment';
 import './index.css';
@@ -17,7 +17,7 @@ interface IHint{
 const Hints: React.FC = () => {
  
     const [hints, setHints] = useState<IHint[]>([])
-    const navigate = useNavigate();
+    const history = useHistory()
  
     useEffect(() => {
         loadHints()
@@ -34,14 +34,14 @@ const Hints: React.FC = () => {
     }
  
     function newHint(){
-        navigate('/dicas_cadastro')
+        history.push('/dicas_cadastro')
     }
  
     function editHint(id: number){
-        navigate('/dicas_cadastro/${id}')
+        history.push('/dicas_cadastro/${id}')
     }
     function viewHint(id: number){
-        navigate('/dicas/${id}')
+        history.push('/dicas/${id}')
     }
     async function likedHint(id: number){
         await api.patch("/hints/${id}")

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Card } from 'react-bootstrap';
-import { useNavigate, useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import './index.css';
 import api from '../../../services/api';
 import moment from 'moment';
@@ -14,11 +14,11 @@ interface IHint{
 }
 const Detail: React.FC = () => {
  
-    const navigate = useNavigate();
-    const { id } = useParams<{ id: string }>();
-    const [hint, setHint] = useState<IHint>();
-    function back() {
-      navigate(-1);
+    const history = useHistory()
+    const { id } = useParams<{ id: string }>()
+    const [hint, setHint] = useState<IHint>()
+    function back(){
+        history.goBack()
     }
     async function findHint(){
         const response = await api.get<IHint>("/hints/${id}")
