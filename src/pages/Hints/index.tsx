@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import moment from 'moment';
 import './index.css';
@@ -17,7 +17,7 @@ interface IHint{
 const Hints: React.FC = () => {
  
     const [hints, setHints] = useState<IHint[]>([])
-    const history = useHistory()
+    const navigate = useNavigate();
  
     useEffect(() => {
         loadHints()
@@ -34,14 +34,14 @@ const Hints: React.FC = () => {
     }
  
     function newHint(){
-        history.push('/dicas_cadastro')
+        navigate('/dicas_cadastro')
     }
  
     function editHint(id: number){
-        history.push("/dicas_cadastro/${id}")
+        navigate('/dicas_cadastro/${id}')
     }
     function viewHint(id: number){
-        history.push("/dicas/${id}")
+        navigate('/dicas/${id}')
     }
     async function likedHint(id: number){
         await api.patch("/hints/${id}")
@@ -82,7 +82,7 @@ const Hints: React.FC = () => {
                                     <Button size="sm" disabled={hint.liked} variant="primary" onClick={() => editHint(hint.id)}>Editar</Button>{' '}
                                     <Button size="sm" disabled={hint.liked} variant="success" onClick={() => likedHint(hint.id)}>Curtir</Button>{' '}
                                     <Button size="sm" variant="warning" onClick={() => viewHint(hint.id)}>Visualizar</Button>{' '}
-                                    <Button size="sm" variant="danger">Remover</Button>{' '}
+                                    <Button size="sm" variant="danger" onClick={() => deleteHint(hint.id)}>Remover</Button>
                                 </td>
                             </tr>
                         ))
