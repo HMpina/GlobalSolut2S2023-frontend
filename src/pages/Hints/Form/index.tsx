@@ -16,11 +16,12 @@ const Hints: React.FC = () => {
         description: ''
     })
     useEffect(() => {
-        console.log(id)
-        if (id != undefined) {
+        if (id) {
+          console.log(id);
             findHint(id)
         }
-    }, [id])
+    }, [id]);
+
     function updatedModel(e: ChangeEvent<HTMLInputElement>) {
         setModel({
             ...model,
@@ -30,10 +31,10 @@ const Hints: React.FC = () => {
     async function onSubmit(e: ChangeEvent<HTMLFormElement>){
         e.preventDefault()
         if (id != undefined) {
-            const response = await api.put("/hints/${id}", model)
+            const response = await api.put(`/hints/${id}`, model)
         }
         else{
-            const response = await api.post('/hints', model)
+            const response = await api.post(`/hints`, model)
         }
         back()
     }
@@ -41,7 +42,7 @@ const Hints: React.FC = () => {
         history.goBack()
     }
     async function findHint(id: string){
-        const response = await api.get("hints/${id}")
+        const response = await api.get(`hints/${id}`)
         console.log(response)
         setModel({
             title: response.data.title,

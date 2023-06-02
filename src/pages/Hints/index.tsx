@@ -3,7 +3,7 @@ import { Table, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import api from '../../services/api';
 import moment from 'moment';
-import './index.css';
+import './Form/index.css';
  
 interface IHint{
     id: number;
@@ -38,17 +38,17 @@ const Hints: React.FC = () => {
     }
  
     function editHint(id: number){
-        history.push('/dicas_cadastro/${id}')
+        history.push(`/dicas_cadastro/${id}`)
     }
     function viewHint(id: number){
-        history.push('/dicas/${id}')
+        history.push(`/dicas/${id}`)
     }
     async function likedHint(id: number){
-        await api.patch("/hints/${id}")
+        await api.patch(`/hints/${id}`)
         loadHints()
     }
     async function deleteHint(id: number){
-        await api.delete("/hints/${id}")
+        await api.delete(`/hints/${id}`)
         loadHints()
     }
     return (
@@ -77,7 +77,7 @@ const Hints: React.FC = () => {
                                 <td>{hint.id}</td>
                                 <td>{hint.title}</td>
                                 <td>{formatDate(hint.updated_at)}</td>
-                                <td>{hint.liked ? "Finalizado" : "Pendente"}</td>
+                                <td>{hint.liked ? "Curtido" : "Náo curtido"}</td>
                                 <td>
                                     <Button size="sm" disabled={hint.liked} variant="primary" onClick={() => editHint(hint.id)}>Editar</Button>{' '}
                                     <Button size="sm" disabled={hint.liked} variant="success" onClick={() => likedHint(hint.id)}>Curtir</Button>{' '}

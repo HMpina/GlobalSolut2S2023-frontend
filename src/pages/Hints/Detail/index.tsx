@@ -21,7 +21,7 @@ const Detail: React.FC = () => {
         history.goBack()
     }
     async function findHint(){
-        const response = await api.get<IHint>("/hints/${id}")
+        const response = await api.get<IHint>(`/hints/${id}`)
         console.log(response)
         setHint(response.data)
     }
@@ -44,7 +44,7 @@ const Detail: React.FC = () => {
                     <Card.Text>
                     {hint?.description}
                     <br/>
-                    {hint?.liked ? "Finalizado" : "Não curtido"}
+                    {hint?.liked ? "Curtido" : "Não curtido"}
                     <br />
                     <strong>Data de Cadastro: </strong>
                     {moment(hint?.created_at).format('DD/MM/YYYY')}
